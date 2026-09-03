@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Why your dbt models should fail loudly — Ravi</title>
+<meta name="description" content="A case for pushing data-quality checks into the pipeline itself, instead of catching bad numbers on a dashboard weeks later.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-mark">ravi<span>data</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#toolkit">Toolkit</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#articles">Articles</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../resume.pdf" target="_blank" rel="noopener">CV ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="wrap">
+    <a href="../index.html#articles" class="back-link">← Back to articles</a>
+    <h1>Why your dbt models should fail loudly</h1>
+    <div class="article-meta-row">Personal blog · Aug 2026</div>
+  </div>
+</header>
+
+<article class="article-body">
+  <p>
+    A dashboard showing the wrong number for three weeks is a worse
+    outcome than a pipeline that fails at 3am. The first looks fine
+    and quietly erodes trust; the second pages someone and gets fixed
+    before anyone downstream notices.
+  </p>
+
+  <p>
+    Most teams build data-quality checks after the fact — a weekly
+    audit query, a BI-layer sanity check, someone eyeballing a chart.
+    By the time that catches something, the bad numbers have already
+    been in three stand-up decks.
+  </p>
+
+  <h2>Push the checks into the model</h2>
+  <p>
+    dbt's built-in <code>tests</code> are underused for this. A
+    <code>not_null</code> and <code>unique</code> pair on your primary
+    key is a start, but the checks that actually save you are the
+    ones tied to business logic — a refund shouldn't exceed the
+    original order value, a signup date shouldn't be after a churn
+    date.
+  </p>
+
+  <pre><code>-- schema.yml
+models:
+  - name: orders
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: refund_amount
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: "&lt;= order_amount"</code></pre>
+
+  <p>
+    Wire these into CI so a failing test blocks the merge, not just
+    the nightly run. The goal is to make a bad assumption impossible
+    to ship quietly.
+  </p>
+
+  <blockquote>
+    A pipeline that fails loudly is doing its job. A pipeline that
+    fails silently is doing someone else's job for them, badly.
+  </blockquote>
+
+  <h2>What changed</h2>
+  <p>
+    After adding business-logic tests to our core models, the number
+    of "why does this number look off" Slack threads dropped
+    noticeably — not because the data got cleaner, but because bad
+    data stopped making it to the warehouse in the first place.
+  </p>
+</article>
+
+<div class="article-footer-nav">
+  <a href="../index.html#articles">← All articles</a>
+  <a href="../index.html#contact">Get in touch →</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <h2>Have a data problem worth solving?</h2>
+    <div class="footer-grid">
+      <div>
+        <p style="color:var(--text-on-dark-dim); max-width:48ch;">
+          Open to data engineering roles, freelance pipeline work, or just a
+          conversation about a gnarly SQL query. Reach me directly:
+        </p>
+      </div>
+      <div>
+        <ul class="contact-links">
+          <li><a href="mailto:hello@ravidata.com">hello@ravidata.com</a></li>
+          <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>ravidata.com</span>
+      <span>&copy; <span id="year"></span> Ravi</span>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

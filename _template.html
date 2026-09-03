@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!--
+==================================================================
+  HOW TO USE THIS TEMPLATE
+==================================================================
+  1. Duplicate this file, rename it (e.g. my-new-post.html), keep
+     it inside the /articles folder.
+  2. Edit the <title>, the meta description, the heading, date,
+     and the body content below — search for "EDIT:".
+  3. Add matching {...} entry to the ARTICLES array in ../index.html
+     so it shows up on the homepage, with link set to
+     "articles/my-new-post.html".
+  4. Everything else (fonts, colors, nav, footer) is shared via
+     ../styles.css — you don't need to touch it here.
+==================================================================
+-->
+
+<!-- EDIT: page title -->
+<title>Why your dbt models should fail loudly — Ravi</title>
+<meta name="description" content="EDIT: one-sentence summary of the article, for search engines and link previews.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="../index.html" class="nav-mark">ravi<span>data</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#toolkit">Toolkit</a></li>
+      <li><a href="../index.html#projects">Projects</a></li>
+      <li><a href="../index.html#articles">Articles</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../resume.pdf" target="_blank" rel="noopener">CV ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="wrap">
+    <a href="../index.html#articles" class="back-link">← Back to articles</a>
+    <!-- EDIT: headline -->
+    <h1>Article headline goes here</h1>
+    <!-- EDIT: date / source -->
+    <div class="article-meta-row">Personal blog · Month 2026</div>
+  </div>
+</header>
+
+<article class="article-body">
+  <!-- EDIT: body content. Plain HTML — paragraphs, headings, lists,
+       blockquotes and code blocks are all styled automatically. -->
+
+  <p>
+    Open with the concrete problem, not a throat-clearing intro —
+    what broke, what was slow, or what surprised you.
+  </p>
+
+  <h2>A section heading</h2>
+  <p>
+    Body copy. Keep paragraphs short. Use <code>inline code</code> for
+    identifiers, table names, or commands.
+  </p>
+
+  <pre><code>SELECT *
+FROM raw.orders
+WHERE ingested_at &gt; current_date - 1;</code></pre>
+
+  <blockquote>
+    A pulled quote or key takeaway can go here.
+  </blockquote>
+
+  <h2>Wrap-up</h2>
+  <p>
+    Close with what changed as a result, or what you'd do differently
+    next time.
+  </p>
+</article>
+
+<div class="article-footer-nav">
+  <a href="../index.html#articles">← All articles</a>
+  <a href="../index.html#contact">Get in touch →</a>
+</div>
+
+<footer>
+  <div class="wrap">
+    <h2>Have a data problem worth solving?</h2>
+    <div class="footer-grid">
+      <div>
+        <p style="color:var(--text-on-dark-dim); max-width:48ch;">
+          Open to data engineering roles, freelance pipeline work, or just a
+          conversation about a gnarly SQL query. Reach me directly:
+        </p>
+      </div>
+      <div>
+        <ul class="contact-links">
+          <li><a href="mailto:hello@ravidata.com">hello@ravidata.com</a></li>
+          <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>ravidata.com</span>
+      <span>&copy; <span id="year"></span> Ravi</span>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

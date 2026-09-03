@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ravi — Data Engineering &amp; Analytics</title>
+<meta name="description" content="Data portfolio — pipelines, cloud platforms, SQL and Python.">
+
+<!--
+==================================================================
+  HOW TO EDIT THIS SITE (no build tools needed)
+==================================================================
+  1. Your name / tagline / bio  -> search for "EDIT: PROFILE" below
+  2. Toolkit (skills)           -> search for "EDIT: TOOLKIT"
+  3. Projects                   -> search for "EDIT: PROJECTS" — this
+     is a plain JS array near the bottom. Add a new {...} object to
+     add a project. No HTML editing required.
+  4. Articles                   -> search for "EDIT: ARTICLES" — same
+     pattern as Projects, a plain JS array. Each entry can link to an
+     external post (Medium, Substack, dev.to, LinkedIn) or to a local
+     .html page you write yourself.
+  5. CV / resume                -> search for "EDIT: CV". Put your
+     actual file at the path referenced there (e.g. resume.pdf,
+     sitting next to this index.html) and the button downloads it.
+  6. Contact links              -> search for "EDIT: CONTACT"
+  7. Colors / fonts             -> all in the :root block at the top
+     of styles.css (shared by this page and every article page)
+
+  DEPLOYING TO ravidata.com:
+  - Push this file (renamed index.html) to a GitHub repo
+  - Connect the repo to Netlify or Vercel (free tier)
+  - In your registrar (wherever you bought ravidata.com), point the
+    domain's DNS at Netlify/Vercel per their "custom domain" docs —
+    both issue free SSL automatically once DNS is pointed.
+==================================================================
+-->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="nav-mark">ravi<span>data</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#toolkit">Toolkit</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#articles">Articles</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <!-- EDIT: CV — point this at your actual file -->
+      <li><a href="resume.pdf" target="_blank" rel="noopener">CV ↗</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <!-- EDIT: PROFILE -->
+      <div class="hero-eyebrow"><span class="dash"></span> Data Engineering &amp; Analytics</div>
+      <h1 class="title">I build the pipes data<br>flows through, cleanly.</h1>
+      <p class="hero-sub">
+        Ravi — I design and ship data pipelines end to end: ingesting messy
+        sources, modelling them in SQL, orchestrating the moves in Python,
+        and landing the result on cloud infrastructure teams can actually trust.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">See the work</a>
+        <!-- EDIT: CV — replace "resume.pdf" with your actual filename -->
+        <a href="resume.pdf" download class="btn btn-ghost">Download CV</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+
+    <div class="pipeline-box">
+      <!-- Hero diagram: a small data pipeline, animated once on load -->
+      <svg viewBox="0 0 380 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path id="pipe" class="pipe-line" d="M 60 40 C 140 40, 40 120, 120 120 S 260 200, 190 200 S 60 280, 320 280" />
+
+        <!-- nodes -->
+        <circle class="pipe-node amber" cx="60" cy="40" r="7"></circle>
+        <text class="node-label active" x="76" y="45">Raw sources</text>
+
+        <circle class="pipe-node" cx="120" cy="120" r="7"></circle>
+        <text class="node-label" x="136" y="125">Python ETL</text>
+
+        <circle class="pipe-node" cx="190" cy="200" r="7"></circle>
+        <text class="node-label" x="206" y="205">Cloud warehouse</text>
+
+        <circle class="pipe-node" cx="320" cy="280" r="7"></circle>
+        <text class="node-label" x="238" y="285">SQL models &amp; dashboards</text>
+
+        <!-- moving pulse along the path, one orchestrated loop -->
+        <circle class="pulse" r="4">
+          <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto">
+            <mpath href="#pipe"></mpath>
+          </animateMotion>
+        </circle>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div>
+        <div class="section-head" style="border:none; padding-bottom:0; margin-bottom:22px;">
+          <h2>About</h2>
+        </div>
+        <!-- EDIT: PROFILE (bio) -->
+        <p>
+          I work at the point where messy raw data becomes something a
+          business can actually rely on — writing the ETL, modelling the
+          warehouse, and choosing infrastructure that won't fall over at 2am.
+          Most of my day lives across Python, SQL and one or two cloud
+          consoles, and I like projects where the constraint is real: a
+          slow query, a flaky source, a pipeline that has to run unattended.
+        </p>
+        <p>
+          Below is a running list of the tools I reach for most, and a
+          handful of projects that show how they fit together.
+        </p>
+      </div>
+      <div>
+        <!-- EDIT: FOCUS AREAS -->
+        <ul class="focus-list">
+          <li><span>Pipelines &amp; orchestration</span> <span class="n">01</span></li>
+          <li><span>Cloud data warehousing</span> <span class="n">02</span></li>
+          <li><span>SQL modelling</span> <span class="n">03</span></li>
+          <li><span>Analytics &amp; dashboards</span> <span class="n">04</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="toolkit" style="background:var(--paper-2);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Toolkit</h2>
+        <div class="section-tag">Languages, platforms, and the day-to-day stack</div>
+      </div>
+
+      <!-- Filled by JS from the TOOLKIT array — see EDIT: TOOLKIT below -->
+      <div id="toolkit-groups"></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <div class="section-tag">A few things I've shipped</div>
+      </div>
+      <div class="project-list" id="project-list"><!-- filled by JS --></div>
+    </div>
+  </section>
+
+  <section id="articles" style="background:var(--paper-2);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Articles</h2>
+        <div class="section-tag">Writing on pipelines, SQL and cloud data</div>
+      </div>
+      <div class="project-list" id="article-list"><!-- filled by JS --></div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Have a data problem worth solving?</h2>
+    <div class="footer-grid">
+      <div>
+        <p style="color:var(--text-on-dark-dim); max-width:48ch;">
+          Open to data engineering roles, freelance pipeline work, or just a
+          conversation about a gnarly SQL query. Reach me directly:
+        </p>
+      </div>
+      <div>
+        <!-- EDIT: CONTACT -->
+        <ul class="contact-links">
+          <li><a href="mailto:hello@ravidata.com">hello@ravidata.com</a></li>
+          <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a></li>
+          <li><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>ravidata.com</span>
+      <span>&copy; <span id="year"></span> Ravi</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  /* ================================================================
+     EDIT: TOOLKIT
+     Add or remove a tool by adding/removing one line from a group's
+     "items" array. "slug" is the Simple Icons slug for that brand —
+     browse https://simpleicons.org to find one for a new tool.
+     Leave slug as "" for tools with no clean logo (e.g. "SQL") —
+     it falls back to a plain text tile automatically.
+  ================================================================ */
+  const TOOLKIT = [
+    {
+      group: "Languages",
+      items: [
+        { name: "Python", slug: "python" },
+        { name: "SQL", slug: "" },
+        { name: "Bash", slug: "gnubash" }
+      ]
+    },
+    {
+      group: "Cloud & infrastructure",
+      items: [
+        { name: "AWS", slug: "amazonaws" },
+        { name: "Google Cloud", slug: "googlecloud" },
+        { name: "Azure", slug: "microsoftazure" },
+        { name: "Docker", slug: "docker" },
+        { name: "Kubernetes", slug: "kubernetes" },
+        { name: "Terraform", slug: "terraform" }
+      ]
+    },
+    {
+      group: "Warehousing & modelling",
+      items: [
+        { name: "Snowflake", slug: "snowflake" },
+        { name: "BigQuery", slug: "googlebigquery" },
+        { name: "dbt", slug: "dbt" },
+        { name: "PostgreSQL", slug: "postgresql" },
+        { name: "MySQL", slug: "mysql" }
+      ]
+    },
+    {
+      group: "Orchestration & processing",
+      items: [
+        { name: "Airflow", slug: "apacheairflow" },
+        { name: "Spark", slug: "apachespark" },
+        { name: "Kafka", slug: "apachekafka" },
+        { name: "Pandas", slug: "pandas" }
+      ]
+    },
+    {
+      group: "Visualization & notebooks",
+      items: [
+        { name: "Tableau", slug: "tableau" },
+        { name: "Power BI", slug: "powerbi" },
+        { name: "Streamlit", slug: "streamlit" },
+        { name: "Jupyter", slug: "jupyter" }
+      ]
+    },
+    {
+      group: "Version control",
+      items: [
+        { name: "Git", slug: "git" },
+        { name: "GitHub", slug: "github" }
+      ]
+    }
+  ];
+
+  const inkHex = "17212F"; // matches --text-on-light, used to tint monochrome logos
+
+  const toolkitRoot = document.getElementById('toolkit-groups');
+  TOOLKIT.forEach(group => {
+    const section = document.createElement('div');
+    section.className = 'toolkit-group';
+
+    const tiles = group.items.map(item => {
+      if (!item.slug) {
+        return `
+          <div class="tool-tile tool-tile--label-only">
+            <span class="tool-name">${item.name}</span>
+          </div>`;
+      }
+      return `
+        <div class="tool-tile">
+          <span class="icon-wrap">
+            <img class="mono" src="https://cdn.simpleicons.org/${item.slug}/${inkHex}" alt="" width="28" height="28" loading="lazy" onerror="this.style.display='none'">
+            <img class="color" src="https://cdn.simpleicons.org/${item.slug}" alt="" width="28" height="28" loading="lazy" onerror="this.style.display='none'">
+          </span>
+          <span class="tool-name">${item.name}</span>
+        </div>`;
+    }).join('');
+
+    section.innerHTML = `
+      <h3>${group.group}</h3>
+      <div class="tool-grid">${tiles}</div>
+    `;
+    toolkitRoot.appendChild(section);
+  });
+
+  /* ================================================================
+     EDIT: PROJECTS
+     Add a new project by adding another object to this array —
+     nothing else on the page needs to change.
+     - tags: short stack labels
+     - demo / repo: leave as "" to hide that link
+  ================================================================ */
+  const PROJECTS = [
+    {
+      title: "Retail sales pipeline",
+      summary: "Daily ETL from a point-of-sale API into a Snowflake warehouse, modelled with dbt and scheduled on Airflow.",
+      tags: ["Python", "Airflow", "Snowflake", "dbt"],
+      demo: "",
+      repo: "https://github.com/"
+    },
+    {
+      title: "Marketing spend dashboard",
+      summary: "A Streamlit app that blends ad-spend exports with revenue data to show blended ROAS by channel, refreshed nightly.",
+      tags: ["Streamlit", "Pandas", "BigQuery"],
+      demo: "https://streamlit.io/",
+      repo: "https://github.com/"
+    },
+    {
+      title: "Warehouse cost audit",
+      summary: "A SQL-driven audit of warehouse compute usage that flagged redundant queries and cut monthly spend by a third.",
+      tags: ["SQL", "Snowflake", "Python"],
+      demo: "",
+      repo: "https://github.com/"
+    }
+  ];
+
+  const list = document.getElementById('project-list');
+  PROJECTS.forEach((p, i) => {
+    const links = [];
+    if (p.demo) links.push(`<a href="${p.demo}" target="_blank" rel="noopener">Live demo ↗</a>`);
+    if (p.repo) links.push(`<a href="${p.repo}" target="_blank" rel="noopener">Source ↗</a>`);
+
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML = `
+      <div class="project-index">${String(i + 1).padStart(2, '0')}</div>
+      <div class="project-body">
+        <h3>${p.title}</h3>
+        <p>${p.summary}</p>
+        <div class="project-tags">${p.tags.map(t => `<span>${t}</span>`).join('')}</div>
+      </div>
+      <div class="project-links">${links.join('')}</div>
+    `;
+    list.appendChild(card);
+  });
+
+  /* ================================================================
+     EDIT: ARTICLES
+     Same pattern as Projects. "link" can point to an external post
+     (Medium, Substack, dev.to, LinkedIn) or to a local .html file
+     you write and place next to this index.html.
+  ================================================================ */
+  const ARTICLES = [
+    {
+      title: "Why your dbt models should fail loudly",
+      summary: "A short case for pushing data-quality checks into the pipeline itself, instead of catching bad numbers on a dashboard three weeks later.",
+      date: "Aug 2026",
+      source: "Personal blog",
+      link: "articles/dbt-fail-loudly.html"
+    },
+    {
+      title: "Picking a warehouse in 2026: Snowflake vs BigQuery",
+      summary: "Notes from migrating a mid-size analytics stack, focused on cost behaviour under real workloads rather than benchmark marketing.",
+      date: "Jun 2026",
+      source: "Medium",
+      link: "https://medium.com/"
+    }
+  ];
+
+  const articleList = document.getElementById('article-list');
+  ARTICLES.forEach((a, i) => {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML = `
+      <div class="project-index">${String(i + 1).padStart(2, '0')}</div>
+      <div class="project-body">
+        <h3>${a.title}</h3>
+        <p>${a.summary}</p>
+        <div class="article-meta">${a.source} · ${a.date}</div>
+      </div>
+      <div class="project-links"><a href="${a.link}" target="_blank" rel="noopener">Read ↗</a></div>
+    `;
+    articleList.appendChild(card);
+  });
+</script>
+
+</body>
+</html>
