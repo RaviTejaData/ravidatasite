@@ -6,6 +6,34 @@
 <title>Ravi — Data Engineering &amp; Analytics</title>
 <meta name="description" content="Data portfolio — pipelines, cloud platforms, SQL and Python.">
 
+<!--
+==================================================================
+  HOW TO EDIT THIS SITE (no build tools needed)
+==================================================================
+  1. Your name / tagline / bio  -> search for "EDIT: PROFILE" below
+  2. Toolkit (skills)           -> search for "EDIT: TOOLKIT"
+  3. Projects                   -> search for "EDIT: PROJECTS" — this
+     is a plain JS array near the bottom. Add a new {...} object to
+     add a project. No HTML editing required.
+  4. Articles                   -> search for "EDIT: ARTICLES" — same
+     pattern as Projects, a plain JS array. Each entry can link to an
+     external post (Medium, Substack, dev.to, LinkedIn) or to a local
+     .html page you write yourself.
+  5. CV / resume                -> search for "EDIT: CV". Put your
+     actual file at the path referenced there (e.g. resume.pdf,
+     sitting next to this index.html) and the button downloads it.
+  6. Contact links              -> search for "EDIT: CONTACT"
+  7. Colors / fonts             -> all in the :root block at the top
+     of styles.css (shared by this page and every article page)
+
+  DEPLOYING TO ravidata.com:
+  - Push this file (renamed index.html) to a GitHub repo
+  - Connect the repo to Netlify or Vercel (free tier)
+  - In your registrar (wherever you bought ravidata.com), point the
+    domain's DNS at Netlify/Vercel per their "custom domain" docs —
+    both issue free SSL automatically once DNS is pointed.
+==================================================================
+-->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -195,9 +223,9 @@
     {
       group: "Cloud & infrastructure",
       items: [
-        { name: "AWS", slug: "amazonaws" },
+        { name: "AWS", badge: { text: "aws", bg: "#232F3E", fg: "#FF9900" } },
         { name: "Google Cloud", slug: "googlecloud" },
-        { name: "Azure", slug: "microsoftazure" },
+        { name: "Azure", badge: { text: "Az", bg: "#0078D4", fg: "#FFFFFF" } },
         { name: "Docker", slug: "docker" },
         { name: "Kubernetes", slug: "kubernetes" },
         { name: "Terraform", slug: "terraform" }
@@ -208,7 +236,7 @@
       items: [
         { name: "Snowflake", slug: "snowflake" },
         { name: "BigQuery", slug: "googlebigquery" },
-        { name: "dbt", slug: "dbt" },
+        { name: "dbt", badge: { text: "dbt", bg: "#FFFFFF", fg: "#FF694A" } },
         { name: "PostgreSQL", slug: "postgresql" },
         { name: "MySQL", slug: "mysql" }
       ]
@@ -225,8 +253,8 @@
     {
       group: "Visualization & notebooks",
       items: [
-        { name: "Tableau", slug: "tableau" },
-        { name: "Power BI", slug: "powerbi" },
+        { name: "Tableau", badge: { text: "Tab", bg: "#FFFFFF", fg: "#E97627" } },
+        { name: "Power BI", badge: { text: "BI", bg: "#F2C811", fg: "#252423" } },
         { name: "Streamlit", slug: "streamlit" },
         { name: "Jupyter", slug: "jupyter" }
       ]
@@ -246,6 +274,15 @@
     section.className = 'toolkit-group';
 
     const tiles = group.items.map(item => {
+      if (item.badge) {
+        return `
+          <div class="tool-tile">
+            <span class="icon-wrap">
+              <span class="tool-badge" style="background:${item.badge.bg}; color:${item.badge.fg}; border:1px solid rgba(16,27,44,0.12);">${item.badge.text}</span>
+            </span>
+            <span class="tool-name">${item.name}</span>
+          </div>`;
+      }
       if (!item.slug) {
         return `
           <div class="tool-tile tool-tile--label-only">
