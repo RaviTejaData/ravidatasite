@@ -296,6 +296,21 @@
     font-weight: 700;
     font-size: 0.85rem;
   }
+  .tool-badge {
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: 0.6rem;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    text-align: center;
+    padding: 2px;
+  }
   .tool-name {
     font-family: var(--font-head);
     font-size: 0.78rem;
